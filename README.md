@@ -42,46 +42,74 @@ Imported essential libraries for data analysis and visualization like `pandas`, 
 ### ✅ Step-3: Generate Summary Statistics
 
 - Examined the data structure using `df.describe()` and Computed **mean**, **standard deviation**, **min**, **max**, etc; for all numeric columns.
-- Also Computed **\*median** using `dataset.median()`.
+- Also Computed **median** using `dataset.median(numerical_cols=True)`.
 - Identified distribution characteristics of `Age`, `Fare`, `SibSp`, `Parch`, `Pclass`.
 
 ---
 
-### ✅ Step-4: Visualize Feature Distributions
+### ✅ Step-4: Correlate the Numeric Features
 
-#### 🔹 Step-4.1: Histograms (with Subplots)
+To understand how different numeric features are related to each other, I computed the **correlation matrix** using the `.corr()` function from pandas. This helped quantify the linear relationship between variables with values ranging from -1 to +1:
 
-- Plotted histograms for numeric columns using `matplotlib` subplots and `sns.histplot()`.
-- Analyzed distribution shape and skewness.
+- **+1** indicates a strong positive correlation.
+- **-1** indicates a strong negative correlation.
+- **0** indicates no linear correlation.
 
-#### 🔹 Step-4.2: Boxplots
+#### 🔹 Correlation Heatmap
 
-- Plotted boxplots to detect and visualize outliers for `Age`, `Fare`, `SibSp`, `Parch`.
+Using `sns.heatmap()`, I visualized the correlation matrix to easily spot strong positive or negative relationships between features.
 
----
+##### Insights from the heatmap:
 
-### ✅ Step-5: Analyze Categorical Features
-
-- Used **countplots** to examine survival patterns across:
-  - `Sex`, `Pclass`, `Embarked`
-- Used **violin plots** to study `Age` distributions with respect to `Survived` and `Sex`.
-
----
-
-### ✅ Step-6: Feature Correlation & Pairplot
-
-- Created **correlation heatmap** using `sns.heatmap()` to observe relationships between numeric features.
-- Used `sns.pairplot()` for selected features to visually explore feature interactions and class separation.
+- `Fare` and `Pclass` are negatively correlated (higher class → lower Pclass number → higher fare).
+- `SibSp` and `Parch` showed some positive correlation, suggesting passengers often traveled with both siblings/spouses and parents/children.
+- `Survived` had notable correlations with `Sex`, `Pclass`, and `Fare`.
 
 ---
 
-### ✅ Step-7: Feature Engineering (Optional)
+### ✅ Step-5: Different Plots
 
-- Created new features:
-  - `FamilySize = SibSp + Parch + 1`
-  - `IsAlone` based on `FamilySize`
-  - Extracted `Title` from `Name`
-- Analyzed new features against survival outcomes using barplots.
+To explore feature distributions, relationships, and patterns in the dataset, I created multiple visualizations using Seaborn and Matplotlib. These plots help uncover trends, outliers, and categorical relationships essential for understanding the dataset before modeling.
+
+---
+
+#### 🔹 Step-5.1: Histplots / Histograms
+
+- Used `sns.histplot()` and `df.hist()` to visualize the distribution of numeric features.
+- Helped identify skewness, spread, and frequency of features like `Age`, `Fare`, `SibSp`, and `Parch`.
+- Used `plt.subplots()` to display multiple histograms in a grid layout for compact viewing.
+
+---
+
+#### 🔹 Step-5.2: Boxplots
+
+- Used `sns.boxplot()` to detect **outliers** and visualize feature spread and central tendency.
+- Focused on numeric features like `Fare` and `Age`.
+- Revealed extreme values in `Fare`, indicating highly variable ticket pricing across passengers.
+
+---
+
+#### 🔹 Step-5.3: Pairplots
+
+- Used `sns.pairplot()` to plot pairwise relationships between multiple numeric features.
+- Added `hue='Survived'` to see how survival status varied across feature combinations.
+- Helped identify patterns like clustering and feature influence on survival.
+
+---
+
+#### 🔹 Step-5.4: Countplots
+
+- Used `sns.countplot()` to visualize the count of passengers by categorical variables such as `Sex`, `Pclass`, and `Embarked`.
+- Added `hue='Survived'` to compare survival counts within each category.
+- Provided a clear visual breakdown of class distribution and survival trends across groups.
+
+---
+
+#### 🔹 Step-5.5: Violin Plots
+
+- Used `sns.violinplot()` to visualize the distribution and density of a numeric variable across different categories.
+- Compared `Age` and `Fare` distributions against `Survived` and `Sex`.
+- Combined features of boxplots and KDE to provide more detailed distributional insights.
 
 ---
 
@@ -93,7 +121,6 @@ Imported essential libraries for data analysis and visualization like `pandas`, 
 - **Violin/Swarmplots** – Survival patterns
 - **Heatmap** – Feature correlation
 - **Pairplot** – Feature interactions
-- **FacetGrid** – Multiple variable exploration
 
 ---
 
@@ -125,4 +152,4 @@ Imported essential libraries for data analysis and visualization like `pandas`, 
 
 ## 📞 Contact
 
-If you have any questions or feedback, feel free to reach out via [LinkedIn](https://linkedin.com) or email!
+If you have any questions or feedback, feel free to reach out via [LinkedIn](https://linkedin.com/dhinoja-rajan) or [Email](mailto:rajandhinoja03@gmail.com)!
